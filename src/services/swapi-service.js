@@ -1,43 +1,43 @@
 export default class SwapiService{
     _rootUrl = `https://swapi.dev/api`;
 
-    async getResource(url){
+    getResource = async(url) => {
         const res = await fetch(`${this._rootUrl}${url}`);
         if(!res.ok){
             throw new Error (`Can't fetch data from url ${this._rootUrl}${url}, got ${res.status} status code`);
         }
         return await res.json();
-    }
+    };
 
-    async getAllPeople(){
+    getAllPeople = async () => {
         const res = await this.getResource(`/people`);
         return res.results.map(this._transformPerson);
-    }
+    };
 
-    async getPerson(id){
+    getPerson = async (id) => {
         const person = await this.getResource(`/people/${id}`);
         return this._transformPerson(person);
-    }
+    };
 
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
         return res.results.map(this._transformPlanet);
-    }
+    };
 
-    async getPlanet(id) {
+    getPlanet = async (id) => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this._transformPlanet(planet);
-    }
+    };
 
-    async getAllStarships() {
+    getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
         return res.results.map(this._transformStarship);
-    }
+    };
 
-    async getStarship(id) {
+    getStarship = async (id) => {
         const starship = await this.getResource(`/starships/${id}/`);
         return this._transformStarship(starship);
-    }
+    };
 
     _transformPlanet = (planet) => {
         return {
@@ -47,7 +47,7 @@ export default class SwapiService{
             rotationPeriod:planet.rotation_period,
             diameter:planet.diameter
         };
-    }
+    };
 
     _transformStarship = (starship) => {
         return {
@@ -61,7 +61,7 @@ export default class SwapiService{
             passengers: starship.passengers,
             cargoCapacity: starship.cargoCapacity
         }
-    }
+    };
 
     _transformPerson = (person) => {
         return {
@@ -71,10 +71,10 @@ export default class SwapiService{
             birthYear: person.birth_year,
             eyeColor: person.eye_color
         }
-    }
+    };
 
-    _extractId(item){
+    _extractId = (item) => {
         const regExp = /\/([0-9]*)\/$/;
         return item.url.match(regExp)[1];
-    }
+    };
 }
