@@ -7,7 +7,7 @@ import ErrorButton from "../error-button/error-button";
 import PeoplePage from "../people-page/people-page";
 import ErrorBoundry from "../error-boundry";
 import Row from "../row";
-import ItemDetails from "../item-details";
+import ItemDetails, { Record } from "../item-details/item-details";
 import SwapiService from "../../services/swapi-service";
 
 export default class App extends Component {
@@ -20,6 +20,8 @@ export default class App extends Component {
                 itemId={11}
                 getData={getPerson}
                 getImageUrl={getPersonImage}>
+                <Record field="gender" label="Gender"/>
+                <Record field="eyeColor" label="EyeColor"/>
             </ItemDetails>
         );
 
