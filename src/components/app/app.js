@@ -10,6 +10,7 @@ import Row from "../row";
 import ItemDetails, { Record } from "../item-details/item-details";
 import SwapiService from "../../services/swapi-service";
 import ItemList from '../item-list';
+import DummySwapiService from '../../services/dummy-swapi-service';
 import {
     PersonList,
     PlanetList,
@@ -18,9 +19,10 @@ import {
     PlanetDetails,
     StarshipDetails
 } from "../sw-components";
+import { SwapiServiceProvider } from '../swapi-service-context';
 
 export default class App extends Component {
-    swapiService = new SwapiService();
+    swapiService = new DummySwapiService();
 
     render(){
         const { getPerson, getStarship, getPersonImage, getStarshipImage, getAllPeople } = this.swapiService;
@@ -47,25 +49,27 @@ export default class App extends Component {
 
         return (
             <ErrorBoundry>
-                <div className="stardb-app">
-                    <Header />
-                    {/*<RandomPlanet />*/}
-                    {/*<ErrorButton />*/}
-                    {/*<PeoplePage />*/}
+                <SwapiServiceProvider value={this.swapiService} >
+                    <div className="stardb-app">
+                        <Header />
+                        {/*<RandomPlanet />*/}
+                        {/*<ErrorButton />*/}
+                        {/*<PeoplePage />*/}
 
-                    <PersonDetails itemId={11} />
+                        <PersonDetails itemId={11} />
 
-                    <PlanetDetails itemId={5} />
+                        <PlanetDetails itemId={5} />
 
-                    <StarshipDetails itemId={9} />
+                        <StarshipDetails itemId={9} />
 
-                    <PersonList />
+                        <PersonList />
 
-                    <PlanetList />
+                        <PlanetList />
 
-                    <StarshipList />
+                        <StarshipList />
 
-                </div>
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundry>
         );
     }
