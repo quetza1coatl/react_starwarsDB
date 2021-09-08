@@ -10,6 +10,14 @@ import Row from "../row";
 import ItemDetails, { Record } from "../item-details/item-details";
 import SwapiService from "../../services/swapi-service";
 import ItemList from '../item-list';
+import {
+    PersonList,
+    PlanetList,
+    StarshipList,
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails
+} from "../sw-components";
 
 export default class App extends Component {
     swapiService = new SwapiService();
@@ -44,12 +52,22 @@ export default class App extends Component {
                     {/*<RandomPlanet />*/}
                     {/*<ErrorButton />*/}
                     {/*<PeoplePage />*/}
-                    <ItemList
-                        getData={getAllPeople}
-                        onItemSelected={() => {}}>
 
+                    <PersonDetails itemId={11} />
+
+                    <PlanetDetails itemId={5} />
+
+                    <StarshipDetails itemId={9} />
+
+                    <PersonList>
                         { ({name}) => <span>{name}</span> }
-                    </ItemList>
+                    </PersonList>
+                    <PlanetList>
+                        { ({name}) => <span>{name}</span> }
+                    </PlanetList>
+                    <StarshipList>
+                        { ({name}) => <span>{name}</span> }
+                    </StarshipList>
                     <Row
                         left={personDetails}
                         right={starshipDetails} />
