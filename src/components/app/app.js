@@ -59,18 +59,12 @@ export default class App extends Component {
 
                     <StarshipDetails itemId={9} />
 
-                    <PersonList>
-                        { ({name}) => <span>{name}</span> }
-                    </PersonList>
-                    <PlanetList>
-                        { ({name}) => <span>{name}</span> }
-                    </PlanetList>
-                    <StarshipList>
-                        { ({name}) => <span>{name}</span> }
-                    </StarshipList>
-                    <Row
-                        left={personDetails}
-                        right={starshipDetails} />
+                    <PersonList />
+
+                    <PlanetList />
+
+                    <StarshipList />
+
                 </div>
             </ErrorBoundry>
         );
