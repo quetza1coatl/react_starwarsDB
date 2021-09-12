@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './item-details.css';
-import ErrorButton from "../error-button/error-button";
 
 const Record = ({ item, field, label }) => {
     return (
@@ -50,7 +49,7 @@ export default class ItemDetails extends Component {
     render() {
         const { item, image } = this.state;
         if (!item) {
-            return <span>Select a item from a list</span>;
+            return <span>Select an item from a list</span>;
         }
         const { name } = this.state.item;
         return (
@@ -68,7 +67,6 @@ export default class ItemDetails extends Component {
                             })
                         }
                     </ul>
-                    <ErrorButton />
                 </div>
             </div>
         )
